@@ -30,6 +30,17 @@ app.post('/books', async (request, response) => {
   }
 })
 
+app.delete('/books/:id', async (request, response) => {
+  let id = request.params.id;
+  console.log('BOOK ID TO REMOVE', id);
+  let result = await Book.findByIdAndDelete(id);
+  if (result) {
+    response.status(204).send('OK');
+  } else {
+    response.status(400)
+  }
+});
+
 mongoose.connect(DATABASE_URL)
 .then(() => {
   app.listen(PORT, () => {
