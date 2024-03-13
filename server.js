@@ -34,9 +34,10 @@ app.put('/books/:id', async (request, response) => {
   try {
     let json = request.body;
     let id = request.params.id;
-    console.log('hello');
     let document = await Book.findByIdAndUpdate({ _id: id }, json, {new: true});
+    console.log('hello2', document);
     response.send(document);
+
   } catch(e) {
     response.status(400).send('bad request');
   }
