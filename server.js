@@ -28,7 +28,19 @@ app.post('/books', async (request, response) => {
   } catch (error) {
     response.status(500)
   }
-})
+});
+
+app.put('/books/:id', async (request, response) => {
+  try {
+    let json = request.body;
+    let id = request.params.id;
+    console.log('hello');
+    let document = await Book.findByIdAndUpdate({ _id: id }, json, {new: true});
+    response.send(document);
+  } catch(e) {
+    response.status(400).send('bad request');
+  }
+});
 
 app.delete('/books/:id', async (request, response) => {
   let id = request.params.id;
