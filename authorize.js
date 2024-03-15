@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken'); // auth
 const jwksClient = require('jwks-rsa'); // auth
 
 function verifyUser(request, response, next) {
+    console.log(request.headers)
     function valid(err, user) {
         if(err){
             next(err);
