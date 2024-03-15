@@ -5,12 +5,14 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose')
 const Book = require('./model/book.js')
+const authorize = require('./authorize')
 
 const DATABASE_URL = process.env.DATABASE_URL;
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(authorize)
 
 const PORT = process.env.PORT || 3001;
 
